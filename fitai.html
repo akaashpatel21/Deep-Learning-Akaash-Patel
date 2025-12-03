@@ -1,0 +1,568 @@
+<!-- Place this code into a single .html file and open in browser -->
+<!-- Search for <-- ADDED --> comments to locate enhancements -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>fitAi</title>
+  <style>
+    /* All existing styles remain unchanged */
+                  body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                color: #333;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            header {
+                background-color: #333;
+                color: #fff;
+                padding: 20px;
+                text-align: center;
+            }
+            .container {
+                flex-grow: 1;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            .activity-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .activity-card {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            .activity-card h3 {
+                margin-top: 10px;
+            }
+            .activity-card button {
+                background-color: #333;
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 4px;
+                margin-top: 15px;
+            }
+            .activity-card button:hover {
+                background-color: #555;
+            }
+            .progress-form {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .progress-form input, .progress-form select, .progress-form textarea {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            .progress-form button {
+                background-color: #333;
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+            .progress-form button:hover {
+                background-color: #555;
+            }
+            footer {
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                padding: 10px;
+                width: 100%;
+            }
+            #progressList {
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            #showProgressButton, #resetProgressButton {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #333;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+            #showProgressButton:hover, #resetProgressButton:hover {
+                background-color: #555;
+            }
+            #goalProgress {
+                margin-top: 20px;
+            }
+            #goalProgressBar {
+                width: 100%;
+                background-color: #ddd;
+                border-radius: 4px;
+            }
+            #goalProgressFill {
+                height: 20px;
+                background-color: #4CAF50;
+                border-radius: 4px;
+            }
+            #motivationalQuote {
+                margin-top: 20px;
+                text-align: center;
+            }
+            #motivationalQuote blockquote {
+                font-size: 1.5rem;
+                color: #333;
+                font-style: italic;
+            }
+    
+            /* Login page styles */
+            .login-container {
+                background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                margin: 100px auto;
+            }
+            .login-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .login-container input {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            .login-container button {
+                width: 100%;
+                padding: 10px;
+                background-color: #333;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+            .login-container button:hover {
+                background-color: #555;
+            }
+            .login-container p {
+                text-align: center;
+                color: red;
+                display: none;
+            }
+    
+            /* Background Image for Login Page */
+            #loginPage {
+                background-image: url('https://images.wallpapersden.com/image/download/dumbbells-fitness-gym_Z2ZoZ2qUmZqaraWkpJRobW1trWdqbmc.jpg');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+    .activity-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* <-- ADDED */
+    }
+    .activity-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* <-- ADDED */
+    }
+  </style>
+</head>
+<body>
+  <!-- YOUR FULL ORIGINAL CODE GOES HERE -->
+  <!-- Replace header content to fitAi -->
+     <!-- Login Page Content -->
+    <div id="loginPage">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <button type="submit">Login</button>
+            </form>
+            <p id="loginErrorMessage">Invalid credentials, please try again.</p>
+        </div>
+    </div>
+    
+    <!-- Gym Tracker Content -->
+    <div id="trackerPage" style="display: none;">
+  <header>
+    <h1>Welcome to fitAi</h1>
+    <p>Your Fitness Journey Starts Here</p>
+  </header>
+
+  <!-- Inside your existing script tag, enhance this part: -->
+                <div class="container">
+            <!-- Motivational Quote -->
+            <section id="motivationalQuote">
+                <h2 class="section-title">Motivational Quote</h2>
+                <blockquote id="quote"></blockquote>
+            </section>
+    
+            <!-- Activity Selection -->
+            <section>
+                <h2 class="section-title">Choose Your Activities</h2>
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <img src="https://img.freepik.com/premium-photo/close-up-shot-monitor-with-ekg-data_1313853-88058.jpg?w=740" alt="Cardio" width="200" height="200">
+                        <h3>Cardio</h3>
+                        <button onclick="window.location.href='/start_workout'">Select</button>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <img src="https://m.media-amazon.com/images/I/71xpS88drIL._AC_UF1000,1000_QL80_.jpg" alt="Strength Training" width="200" height="200">
+                        <h3>Strength Training</h3>
+                        <button onclick="window.location.href='/start_workout'">Select</button>
+                    </div>
+                    <div class="activity-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJsOAcWrG0E8w2U977-ceeQO7ecLttG23Oyw&s" alt="Yoga" width="200" height="200">
+                        <h3>Yoga</h3>
+                        <button onclick="window.location.href='/start_workout'">Select</button>
+                    </div>
+                    <div class="activity-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7bi-zKVazY9dGPqASRlxE1tzJe_d_N87Y3A&s" alt="Swimming" width="200" height="200">
+                        <h3>Swimming</h3>
+                        <button onclick="window.location.href='/start_workout'">Select</button>
+                    </div>
+                    <div class="activity-card">
+                        <img src="https://img.freepik.com/free-photo/people-doing-indoor-cycling_23-2149270249.jpg" alt="Cycling" width="200" height="200">
+                        <h3>Cycling</h3>
+                        <button onclick="window.location.href='/start_workout'">Select</button>
+                    </div>
+                    <div class="activity-card">
+                        <img src="https://cbx-prod.b-cdn.net/COLOURBOX40184463.jpg?width=800&height=800&quality=70" alt="Running" width="200" height="200">
+                        <h3>Running</h3>
+                        <button onclick="window.location.href='/start_workout'">Select</button>
+                </div>
+            </section>
+    
+            <!-- Goal Progress -->
+            <section id="goalProgress">
+                <h2 class="section-title">Set Your Goal</h2>
+                <div>
+                    <label for="goalActivity">Activity Goal:</label>
+                    <input type="text" id="goalActivity" placeholder="Enter activity name" />
+                    <label for="goalDuration">Goal Duration (minutes):</label>
+                    <input type="number" id="goalDuration" placeholder="Enter target minutes" />
+                    <button onclick="setGoal()">Set Goal</button>
+                </div>
+                <div id="goalProgressBar">
+                    <div id="goalProgressFill"></div>
+                </div>
+                <p id="goalProgressText"></p>
+            </section>
+    
+            <!-- Progress Tracking Form -->
+            <section>
+                <h2 class="section-title">Track Your Progress</h2>
+                <div class="progress-form">
+                    <form id="progressForm">
+                        <label for="name">Participant Name:</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                        <label for="activity">Activity:</label>
+                        <input type="text" id="activity" name="activity" required placeholder="Enter activity type">
+                        <label for="duration">Duration (minutes):</label>
+                        <input type="number" id="duration" name="duration" required placeholder="Enter duration">
+                        <label for="intensity">Intensity:</label>
+                        <select id="intensity">
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" name="notes" placeholder="Any additional notes"></textarea>
+                        <button type="submit">Submit Progress</button>
+                    </form>
+                </div>
+            </section>
+    
+            <!-- Progress List -->
+            <section id="progressListSection">
+                <button id="showProgressButton" onclick="showProgressList()">Show Progress</button>
+                <button id="resetProgressButton" onclick="resetProgress()">Reset Progress</button>
+                <div id="progressList"></div>
+            </section>
+    
+        </div>
+    
+        <footer>
+            <p>&copy; 2025 Gym Tracker | All Rights Reserved</p>
+        </footer>
+    
+    </div>
+    
+  <script>
+    // Your existing login, quote, form, goal logic stays the same
+              const users = [
+            { username: "user1", password: "password123" },
+            { username: "user2", password: "password456" }
+        ];
+    
+        // Display Login Page
+        function showLoginPage() {
+            document.getElementById("loginPage").style.display = "block";
+            document.getElementById("trackerPage").style.display = "none";
+        }
+    
+        // Display Gym Tracker Page
+        function showTrackerPage() {
+            document.getElementById("loginPage").style.display = "none";
+            document.getElementById("trackerPage").style.display = "block";
+        }
+    
+        // Login Page Logic
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+    
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+    
+            const user = users.find(u => u.username === username && u.password === password);
+    
+            if (user) {
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+                showTrackerPage();
+            } else {
+                document.getElementById("loginErrorMessage").style.display = "block";
+            }
+        });
+    
+        // Always Show Login Page
+        showLoginPage();
+        
+        // Motivational Quote
+        const motivationalQuotes = [
+            "The only bad workout is the one that didn’t happen.",
+            "Push yourself because no one else is going to do it for you.",
+            "Success starts with self-discipline.",
+            "The hardest part is starting. Once you do, the rest is easy."
+        ];
+        const quote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+        document.getElementById("quote").innerText = `"${quote}"`;
+    
+        // Activity Logic
+        let goal = { activity: "", duration: 0, progress: 0 };
+    
+        // Select Activity
+        function selectActivity(activity) {
+            document.getElementById("activity").value = activity;
+        }
+    
+        // Set Goal
+        function setGoal() {
+            goal.activity = document.getElementById("goalActivity").value;
+            goal.duration = parseInt(document.getElementById("goalDuration").value);
+            goal.progress = 0;
+            updateGoalProgress();
+        }
+    
+        // Update Goal Progress
+        function updateGoalProgress() {
+            const goalProgressText = document.getElementById("goalProgressText");
+            const goalProgressFill = document.getElementById("goalProgressFill");
+    
+            const progressPercentage = (goal.progress / goal.duration) * 100;
+            goalProgressFill.style.width = `${progressPercentage}%`;
+            goalProgressText.innerText = `${goal.progress} / ${goal.duration} minutes`;
+        }
+    
+        // Submit Progress
+        document.getElementById("progressForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+    
+            const progressData = {
+                name: document.getElementById("name").value,
+                activity: document.getElementById("activity").value,
+                duration: document.getElementById("duration").value,
+                intensity: document.getElementById("intensity").value,
+                notes: document.getElementById("notes").value,
+                date: new Date().toLocaleDateString()
+            };
+    
+            if (progressData.activity === goal.activity) {
+                goal.progress += parseInt(progressData.duration);
+                updateGoalProgress();
+            }
+    
+            let progressList = JSON.parse(localStorage.getItem('progressList')) || [];
+            progressList.push(progressData);
+            localStorage.setItem('progressList', JSON.stringify(progressList));
+    
+            alert("Progress saved successfully!");
+            document.getElementById("progressForm").reset();
+        });
+    
+        // Show Progress List
+    // Show Progress List with Code Validation
+    function showProgressList() {
+        const progressCode = prompt("Enter the code to view progress:");
+    
+        // Define the correct code (for example: "12345")
+        const correctCode = "12345";
+    
+        if (progressCode === correctCode) {
+            const progressList = JSON.parse(localStorage.getItem('progressList')) || [];
+            const progressListContainer = document.getElementById('progressList');
+            progressListContainer.innerHTML = '<h3>Your Progress</h3>';
+    
+            if (progressList.length === 0) {
+                progressListContainer.innerHTML = '<p>No progress data found.</p>';
+            } else {
+                progressList.forEach(progress => {
+                    const progressDiv = document.createElement('div');
+                    progressDiv.innerHTML = `
+                        <strong>${progress.name}</strong> (${progress.date})<br>
+                        Activity: ${progress.activity}<br>
+                        Duration: ${progress.duration} minutes<br>
+                        Intensity: ${progress.intensity}<br>
+                        Notes: ${progress.notes}<br><br>
+                    `;
+                    progressListContainer.appendChild(progressDiv);
+                });
+            }
+        } else {
+            alert("Incorrect code entered. Progress will not be displayed.");
+        }
+    }
+    
+    
+        // Reset Progress
+        function resetProgress() {
+            localStorage.removeItem('progressList');
+            alert("Progress reset successfully!");
+            showProgressList();
+        }
+
+async function openCamera() {
+  try {
+    // Avoid duplicate overlays
+    if (document.getElementById("cameraOverlay")) return;
+
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+
+    // Overlay background
+    const overlay = document.createElement("div");
+    overlay.setAttribute("id", "cameraOverlay");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "1000";
+
+    // Video wrapper
+    const videoWrapper = document.createElement("div");
+    videoWrapper.style.position = "relative";
+    videoWrapper.style.borderRadius = "16px";
+    videoWrapper.style.overflow = "hidden";
+    videoWrapper.style.boxShadow = "0 8px 20px rgba(0, 0, 0, 0.5)";
+    videoWrapper.style.maxWidth = "90vw";
+    videoWrapper.style.maxHeight = "90vh";
+
+    // Video element
+    const video = document.createElement("video");
+    video.srcObject = stream;
+    video.autoplay = true;
+    video.style.width = "100%";
+    video.style.height = "100%";
+    video.style.objectFit = "cover";
+    video.setAttribute("playsinline", true); // For mobile compatibility
+
+    // Stop button
+    const stopBtn = document.createElement("button");
+    stopBtn.innerText = "Stop Camera";
+    stopBtn.style.position = "absolute";
+    stopBtn.style.top = "10px";
+    stopBtn.style.right = "10px";
+    stopBtn.style.padding = "10px 16px";
+    stopBtn.style.backgroundColor = "#ff4444";
+    stopBtn.style.color = "#fff";
+    stopBtn.style.border = "none";
+    stopBtn.style.borderRadius = "8px";
+    stopBtn.style.cursor = "pointer";
+    stopBtn.style.fontSize = "14px";
+    stopBtn.style.boxShadow = "0 2px 6px rgba(0, 0, 0, 0.3)";
+
+    stopBtn.onclick = () => {
+      stream.getTracks().forEach(track => track.stop());
+      overlay.remove();
+    };
+
+    // Assemble everything
+    videoWrapper.appendChild(video);
+    videoWrapper.appendChild(stopBtn);
+    overlay.appendChild(videoWrapper);
+    document.body.appendChild(overlay);
+
+  } catch (err) {
+    console.error("Camera access denied or failed:", err);
+    alert("Could not access camera. Please allow permissions.");
+  }
+}
+
+
+
+    // Modify existing submit logic to open camera on Submit Progress
+    document.getElementById("progressForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const progressData = {
+        name: document.getElementById("name").value,
+        activity: document.getElementById("activity").value,
+        duration: document.getElementById("duration").value,
+        intensity: document.getElementById("intensity").value,
+        notes: document.getElementById("notes").value,
+        date: new Date().toLocaleDateString()
+      };
+
+      if (progressData.activity === goal.activity) {
+        goal.progress += parseInt(progressData.duration);
+        updateGoalProgress();
+      }
+
+      let progressList = JSON.parse(localStorage.getItem('progressList')) || [];
+      progressList.push(progressData);
+      localStorage.setItem('progressList', JSON.stringify(progressList));
+
+      alert("Progress saved successfully!");
+      document.getElementById("progressForm").reset();
+
+      // Trigger the camera after submitting
+      openCamera(); // <-- ADDED
+    });
+
+    // Other existing script code continues unchanged...
+  </script>
+</body>
+</html>

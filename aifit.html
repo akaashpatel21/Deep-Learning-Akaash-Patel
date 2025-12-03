@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .activity-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .activity-card h3 {
+            margin-top: 10px;
+        }
+        .activity-card button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 15px;
+        }
+        .activity-card button:hover {
+            background-color: #555;
+        }
+        .progress-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .progress-form input, .progress-form select, .progress-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .progress-form button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .progress-form button:hover {
+            background-color: #555;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
+        #progressList {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #showProgressButton, #resetProgressButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #showProgressButton:hover, #resetProgressButton:hover {
+            background-color: #555;
+        }
+        #goalProgress {
+            margin-top: 20px;
+        }
+        #goalProgressBar {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 4px;
+        }
+        #goalProgressFill {
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 4px;
+        }
+        #motivationalQuote {
+            margin-top: 20px;
+            text-align: center;
+        }
+        #motivationalQuote blockquote {
+            font-size: 1.5rem;
+            color: #333;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Gym Tracker</h1>
+    <p>Your Fitness Journey Starts Here</p>
+</header>
+
+<div class="container">
+    <!-- Motivational Quote -->
+    <section id="motivationalQuote">
+        <h2 class="section-title">Motivational Quote</h2>
+        <blockquote id="quote"></blockquote>
+    </section>
+
+    <!-- Activity Selection -->
+    <section>
+        <h2 class="section-title">Choose Your Activities</h2>
+        <div class="activity-grid">
+            <!-- Activity Cards -->
+            <div class="activity-card">
+                <img src="https://img.freepik.com/premium-photo/close-up-shot-monitor-with-ekg-data_1313853-88058.jpg?w=740" alt="Cardio" width="200" height="200">
+                <h3>Cardio</h3>
+                <button onclick="selectActivity('Cardio')">Select</button>
+            </div>
+            <div class="activity-card">
+                <img src="https://m.media-amazon.com/images/I/71xpS88drIL._AC_UF1000,1000_QL80_.jpg" alt="Strength Training" width="200" height="200">
+                <h3>Strength Training</h3>
+                <button onclick="selectActivity('Strength Training')">Select</button>
+            </div>
+            <div class="activity-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJsOAcWrG0E8w2U977-ceeQO7ecLttG23Oyw&s" alt="Yoga" width="200" height="200">
+                <h3>Yoga</h3>
+                <button onclick="selectActivity('Yoga')">Select</button>
+            </div>
+            <div class="activity-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7bi-zKVazY9dGPqASRlxE1tzJe_d_N87Y3A&s" alt="Swimming" width="200" height="200">
+                <h3>Swimming</h3>
+                <button onclick="selectActivity('Swimming')">Select</button>
+            </div>
+            <div class="activity-card">
+                <img src="https://img.freepik.com/free-photo/people-doing-indoor-cycling_23-2149270249.jpg" alt="Cycling" width="200" height="200">
+                <h3>Cycling</h3>
+                <button onclick="selectActivity('Cycling')">Select</button>
+            </div>
+            <div class="activity-card">
+                <img src="https://cbx-prod.b-cdn.net/COLOURBOX40184463.jpg?width=800&height=800&quality=70" alt="Running" width="200" height="200">
+                <h3>Running</h3>
+                <button onclick="selectActivity('Running')">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goal Progress -->
+    <section id="goalProgress">
+        <h2 class="section-title">Set Your Goal</h2>
+        <div>
+            <label for="goalActivity">Activity Goal:</label>
+            <input type="text" id="goalActivity" placeholder="Enter activity name" />
+            <label for="goalDuration">Goal Duration (minutes):</label>
+            <input type="number" id="goalDuration" placeholder="Enter target minutes" />
+            <button onclick="setGoal()">Set Goal</button>
+        </div>
+        <div id="goalProgressBar">
+            <div id="goalProgressFill"></div>
+        </div>
+        <p id="goalProgressText"></p> <!-- Display progress and percentage -->
+    </section>
+
+    <!-- Progress Tracking Form -->
+    <section>
+        <h2 class="section-title">Track Your Progress</h2>
+        <div class="progress-form">
+            <form id="progressForm">
+                <label for="name">Participant Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+                <label for="activity">Activity:</label>
+                <input type="text" id="activity" name="activity" readonly placeholder="Selected Activity">
+                <label for="duration">Duration (minutes):</label>
+                <input type="number" id="duration" name="duration" required placeholder="Enter time in minutes">
+                <label for="intensity">Intensity Level:</label>
+                <select id="intensity" name="intensity">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <label for="notes">Notes:</label>
+                <textarea id="notes" name="notes" placeholder="Additional comments"></textarea>
+                <button type="submit">Submit Progress</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Show Progress Section -->
+    <section id="progressSection" style="display: none;">
+        <h2 class="section-title">Your Progress</h2>
+        <ul id="progressList">
+            <!-- User progress data will be listed here -->
+        </ul>
+        <button onclick="goBack()">Back to Tracker</button>
+    </section>
+
+    <button id="showProgressButton" onclick="checkAccessCode()">Show Progress</button>
+    <button id="resetProgressButton" onclick="resetProgress()">Reset Progress</button>
+</div>
+
+<footer>
+    <p>&copy; 2025 Gym Tracker | All Rights Reserved</p>
+</footer>
+
+<script>
+    // Simulated motivational quote
+    const motivationalQuotes = [
+        "The only bad workout is the one that didn’t happen.",
+        "Push yourself because no one else is going to do it for you.",
+        "Success starts with self-discipline.",
+        "The hardest part is starting. Once you do, the rest is easy."
+    ];
+    const quote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+    document.getElementById("quote").innerText = `"${quote}"`;
+
+    let goal = { activity: "", duration: 0, progress: 0 };
+
+    // Select activity
+    function selectActivity(activity) {
+        document.getElementById("activity").value = activity;
+    }
+
+    // Submit progress
+    document.getElementById("progressForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const progressData = {
+            name: document.getElementById("name").value,
+            activity: document.getElementById("activity").value,
+            duration: document.getElementById("duration").value,
+            intensity: document.getElementById("intensity").value,
+            notes: document.getElementById("notes").value,
+            date: new Date().toLocaleDateString()
+        };
+
+        // Check and update goal progress
+        if (progressData.activity === goal.activity) {
+            goal.progress += parseInt(progressData.duration);
+            updateGoalProgress();
+        }
+
+        let progressList = JSON.parse(localStorage.getItem('progressList')) || [];
+        progressList.push(progressData);
+        localStorage.setItem('progressList', JSON.stringify(progressList));
+
+        alert("Progress saved successfully!");
+
+        document.getElementById("progressForm").reset();  // Reset the form
+    });
+
+    // Update goal progress bar
+    function updateGoalProgress() {
+        const goalProgressFill = document.getElementById("goalProgressFill");
+        const goalProgressText = document.getElementById("goalProgressText");
+        const percentage = (goal.progress / goal.duration) * 100;
+        goalProgressFill.style.width = `${Math.min(percentage, 100)}%`; // Ensure it doesn't exceed 100%
+
+        goalProgressText.innerHTML = `Goal: ${goal.activity} - ${goal.progress} minutes / ${goal.duration} minutes (${Math.min(percentage, 100).toFixed(2)}%)`;
+    }
+
+    // Set goal
+    function setGoal() {
+        const activity = document.getElementById("goalActivity").value;
+        const duration = parseInt(document.getElementById("goalDuration").value);
+
+        if (activity && duration) {
+            goal = { activity, duration, progress: 0 };
+            alert(`Goal set for ${activity} with a target of ${duration} minutes.`);
+            updateGoalProgress();
+        } else {
+            alert("Please enter both activity and goal duration.");
+        }
+    }
+
+    // Check access code for progress
+    function checkAccessCode() {
+        const progressPagePassword = prompt("Enter Access Code to View Progress:");
+
+        if (progressPagePassword === "1234") {
+            showProgress();  // Show progress on the same page
+        } else {
+            alert("Incorrect access code.");
+        }
+    }
+
+    // Show progress data
+    function showProgress() {
+        let progressList = JSON.parse(localStorage.getItem('progressList')) || [];
+        let progressListElement = document.getElementById('progressList');
+        progressListElement.innerHTML = '';  // Clear existing list
+
+        progressList.forEach(progress => {
+            let listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <strong>Name:</strong> ${progress.name} <br>
+                <strong>Activity:</strong> ${progress.activity} <br>
+                <strong>Duration:</strong> ${progress.duration} minutes <br>
+                <strong>Intensity:</strong> ${progress.intensity} <br>
+                <strong>Notes:</strong> ${progress.notes} <br>
+                <strong>Date:</strong> ${progress.date} <br><br>
+            `;
+            progressListElement.appendChild(listItem);
+        });
+
+        document.getElementById('progressSection').style.display = 'block';
+    }
+
+    // Go back to tracker
+    function goBack() {
+        document.getElementById('progressSection').style.display = 'none';
+    }
+
+    // Reset progress
+    function resetProgress() {
+        if (confirm("Are you sure you want to reset all progress data?")) {
+            localStorage.removeItem('progressList');
+            goal = { activity: "", duration: 0, progress: 0 };
+            updateGoalProgress();
+            alert("Progress data has been reset.");
+        }
+    }
+</script>
+
+</body>
+</html>
